@@ -22,7 +22,7 @@ pub struct TransformVisitor {
 
 impl Fold for TransformVisitor {
     fn fold_module(&mut self, mut n: Module) -> Module {
-        if self.filepath == "@mui" {
+        if self.filepath.contains("@mui") {
             let str = Str {
                 span: Span {
                     lo: BytePos(0),
