@@ -5,6 +5,7 @@
     "author": "xiaotian",
     "license": "MIT",
     "private": false,
+    "repository": {"url": "https://github.com/coder-xiaotian/swc-useclient"},
     "keywords": [
         "swc",
         "swc-plugin",
