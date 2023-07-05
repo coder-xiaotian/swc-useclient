@@ -1,15 +1,19 @@
 {
     "name": "use-client",
     "version": "1.0.0",
-    "description": "",
-    "author": "",
+    "description": "A swc plugin that automatically converts component libraries into \"React Client Component\".",
+    "author": "xiaotian",
     "license": "MIT",
     "private": false,
     "keywords": [
+        "swc",
         "swc-plugin",
         "next.js",
         "babel",
-        "use client"
+        "use client",
+        "React",
+        "React Client Component",
+        "RCC"
     ],
     "main": "target/wasm32-wasi/release/swc_plugin_use_client.wasm",
     "scripts": {
