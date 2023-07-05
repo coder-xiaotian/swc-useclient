@@ -1,6 +1,6 @@
 {
     "name": "use-client",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A swc plugin that automatically converts component libraries into \"React Client Component\".",
     "author": "xiaotian",
     "license": "MIT",
