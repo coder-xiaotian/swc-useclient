@@ -1,5 +1,6 @@
 # use-client
-[英文](./README.md)
+[英文](https://github.com/coder-xiaotian/swc-useclient)
+
 一个将组件库自动转换为“React客户端组件“的 swc 插件，比如：你可以通过它自动将@mui中的组件自动转换为"React客户端组件"，而不用在外部包装一个使用了"use client"的组件。
 
 ## 配置
