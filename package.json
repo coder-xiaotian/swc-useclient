@@ -1,12 +1,17 @@
 {
     "name": "use-client",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "",
     "author": "",
     "license": "MIT",
     "private": false,
-    "keywords": ["swc-plugin"],
-    "main": "target/wasm32-wasi/release/use_client.wasm",
+    "keywords": [
+        "swc-plugin",
+        "next.js",
+        "babel",
+        "use client"
+    ],
+    "main": "target/wasm32-wasi/release/swc_plugin_use_client.wasm",
     "scripts": {
         "prepublishOnly": "cargo build-wasi --release"
     },

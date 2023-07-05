@@ -1,0 +1,32 @@
+[package]
+authors = ["xiaotian"]
+description = ""
+edition = "2021"
+license = "MIT"
+name = "use_client"
+repository = ""
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = "1"
+swc_core = { version = "0.78.*", features = [
+  "common",
+  "ecma_ast",
+  "ecma_codegen",
+  "ecma_utils",
+  "ecma_visit",
+  "trace_macro",
+] }
+tracing = "0.1.37"
+
+[dev-dependencies]
+serde_json = "1"
+swc_core = { features = [
+  "testing_transform",
+  "ecma_parser",
+  "ecma_transforms_react",
+], version = "0.78.*" }
+testing = "0.33.19"
+
