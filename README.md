@@ -3,6 +3,22 @@
 
 A swc plugin that automatically converts React component libraries into "React Client Component". For example, you can automatically convert components from @mui into "React Client Component" without having to wrap a component that uses "use client".
 
+## Installation
+npm: 
+```
+npm install -D use-client
+```
+
+yarn:
+```
+yarn add -D use-client
+```
+
+pnpm:
+```
+pnpm i -D use-client
+```
+
 ## Configuration
 + include: ["@mui/material"]
 
