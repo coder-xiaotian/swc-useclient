@@ -1,13 +1,14 @@
-use std::path::PathBuf;
-
-use use_client::TransformVisitor;
+use serde::Deserialize;
+use std::{fs::read_to_string, path::PathBuf};
 use swc_core::{
-    ecma::{
-        visit::as_folder,
-        parser::{EsConfig, Syntax}},
     ecma::transforms::testing::{test_fixture, FixtureTestConfig},
+    ecma::{
+        parser::{EsConfig, Syntax},
+        visit::as_folder,
+    },
 };
 use testing::fixture;
+use use_client::TransformVisitor;
 
 fn syntax() -> Syntax {
     Syntax::Es(EsConfig {
@@ -16,15 +17,30 @@ fn syntax() -> Syntax {
     })
 }
 
-#[fixture("tests/fixture/input.js")]
+#[derive(Debug, Default, Clone, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct TestConfig {
+    #[serde(default)]
+    pub include: Vec<String>,
+    #[serde(default)]
+    pub filepath: String,
+}
+
+#[fixture("tests/fixtures/**/input.js")]
 fn use_client_fixture(input: PathBuf) {
-    let output = input.parent().unwrap().join("output.js");
+    let dir = input.parent().unwrap();
+    let output = dir.join("output.js");
+    let config = read_to_string(dir.join("config.json")).expect("failed to read config.json");
+    println!("---- Config -----\n{}", config);
+    let config: TestConfig = serde_json::from_str(&config).unwrap();
+
     test_fixture(
         syntax(),
         &|_tr| {
-          as_folder(TransformVisitor {
-            filepath: "@mui".into()
-          })
+            as_folder(TransformVisitor {
+                filepath: config.filepath.clone(),
+                include: config.include.to_vec(),
+            })
         },
         &input,
         &output,
