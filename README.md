@@ -4,7 +4,7 @@
 
 [![NPM](https://img.shields.io/npm/l/use-client)](https://github.com/coder-xiaotian/swc-useclient/blob/main/LICENSE)
 [![npm](https://img.shields.io/npm/v/use-client)](https://www.npmjs.com/package/use-client)
-[![CircleCI](https://img.shields.io/circleci/build/github/coder-xiaotian/swc-useclient/main)](https://github.com/coder-xiaotian/swc-useclient/actions/workflows/rust.yml)
+[![Rust](https://github.com/coder-xiaotian/swc-useclient/actions/workflows/rust.yml/badge.svg)](https://github.com/coder-xiaotian/swc-useclient/actions/workflows/rust.yml)
 
 A swc plugin that automatically converts React component libraries into "React Client Component". For example, you can automatically convert components from @mui into "React Client Component" without having to wrap a component that uses "use client".
 
