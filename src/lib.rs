@@ -21,6 +21,7 @@ pub fn process_transform(mut program: Program, data: TransformPluginProgramMetad
         Some(s) => s.replace("\\", "/"),
         None => String::from(""),
     };
+    println!("---- filepath -----\n{}", filepath);
 
     program.visit_mut_with(&mut TransformVisitor {
         filepath: filepath,
