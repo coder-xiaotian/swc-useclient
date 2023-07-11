@@ -1,5 +1,3 @@
-use std::{os, path::PathBuf};
-
 use swc_core::{
     ecma::{ast::Program, visit::VisitMutWith},
     plugin::{
@@ -7,6 +5,7 @@ use swc_core::{
         plugin_transform,
     },
 };
+
 use use_client::{Config, TransformVisitor};
 
 #[plugin_transform]
@@ -21,7 +20,6 @@ pub fn process_transform(mut program: Program, data: TransformPluginProgramMetad
         Some(s) => s.replace("\\", "/"),
         None => String::from(""),
     };
-    println!("---- filepath -----\n{}", filepath);
 
     program.visit_mut_with(&mut TransformVisitor {
         filepath: filepath,

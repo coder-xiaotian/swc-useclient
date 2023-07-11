@@ -15,11 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run tests
-        run: cd transform && cargo test --verbose
+        run: cd transform && cargo test -- --nocapture
 
   Windows:
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v3
       - name: Run tests
-        run: cd transform && cargo test --verbose
+        run: cd transform && cargo test -- --nocapture
