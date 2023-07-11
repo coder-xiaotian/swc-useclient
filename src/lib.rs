@@ -1,19 +1,13 @@
-use swc_core:: {
-    ecma::{
-        visit::{VisitMutWith},
-        ast:: {
-            Program
-        }
-    },
-    plugin:: {
-        metadata::{
-            TransformPluginMetadataContextKind,
-            TransformPluginProgramMetadata
-        },
+use std::{os, path::PathBuf};
+
+use swc_core::{
+    ecma::{ast::Program, visit::VisitMutWith},
+    plugin::{
+        metadata::{TransformPluginMetadataContextKind, TransformPluginProgramMetadata},
         plugin_transform,
     },
 };
-use use_client::{TransformVisitor, Config};
+use use_client::{Config, TransformVisitor};
 
 #[plugin_transform]
 pub fn process_transform(mut program: Program, data: TransformPluginProgramMetadata) -> Program {
@@ -25,10 +19,13 @@ pub fn process_transform(mut program: Program, data: TransformPluginProgramMetad
     .expect("invalid config for use-client");
     let filepath = match data.get_context(&TransformPluginMetadataContextKind::Filename) {
         Some(s) => s,
-        None => String::from("")
+        None => String::from(""),
     };
-    
-    program.visit_mut_with(&mut TransformVisitor { filepath: filepath, include: config.include });
+
+    program.visit_mut_with(&mut TransformVisitor {
+        filepath: filepath,
+        include: config.include,
+    });
 
     program
 }

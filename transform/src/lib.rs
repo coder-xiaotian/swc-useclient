@@ -18,7 +18,6 @@ pub struct TransformVisitor {
     pub include: Vec<String>,
 }
 
-// #[swc_trace]
 impl VisitMut for TransformVisitor {
     fn visit_mut_module(&mut self, n: &mut Module) {
         for path in &self.include {

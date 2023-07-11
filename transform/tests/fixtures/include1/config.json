@@ -1,4 +1,3 @@
 {
-  "filepath": "@mui/material/Button",
-  "include": ["@mui"]
+  "include": ["include1"]
 }
