@@ -22,13 +22,13 @@ fn use_client_fixture(input: PathBuf) {
     let output = dir.join("output.js");
     let config = read_to_string(dir.join("config.json")).expect("failed to read config.json");
     let config: Config = serde_json::from_str(&config).unwrap();
-    println!("filepath: {}", input.to_string_lossy());
+    let filepath: String = input.to_string_lossy().into()
 
     test_fixture(
         syntax(),
         &|_tr| {
             as_folder(TransformVisitor {
-                filepath: input.to_string_lossy().into(),
+                filepath: filepath.replace("\\", "/"),
                 include: config.include.to_vec(),
             })
         },
