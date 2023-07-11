@@ -18,7 +18,7 @@ pub fn process_transform(mut program: Program, data: TransformPluginProgramMetad
     )
     .expect("invalid config for use-client");
     let filepath = match data.get_context(&TransformPluginMetadataContextKind::Filename) {
-        Some(s) => s,
+        Some(s) => s.replace("\\", "/"),
         None => String::from(""),
     };
 
