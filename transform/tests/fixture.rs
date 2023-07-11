@@ -1,4 +1,11 @@
-use swc_core::ecma::parser::{EsConfig, Syntax};
+use std::{fs::read_to_string, path::PathBuf};
+use swc_core::{
+    ecma::transforms::testing::{test_fixture, FixtureTestConfig},
+    ecma::{
+        parser::{EsConfig, Syntax},
+        visit::as_folder,
+    },
+};
 use testing::fixture;
 use use_client::{Config, TransformVisitor};
 
