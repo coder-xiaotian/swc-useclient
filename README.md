@@ -30,10 +30,9 @@ pnpm i -D use-client
 
 ## Configuration
 
-- include: ["@mui/material"]
++ include：["ui-library-path"]
 
 ## Examples
-
 next.js configuration:
 
 ```js
@@ -43,7 +42,7 @@ const nextConfig = {
       [
         "use-client",
         {
-          include: ["@mui/material"],
+          include: ["@mui/material", "@mui/icons-material"，"antd", "@ant-design/icons"],
         },
       ],
     ],
@@ -60,7 +59,7 @@ swc configuration:
     "experimental": {
       "plugins": [
         ["use-client", {
-          "include": ["@mui/material"]
+          "include": ["@mui/material", "@mui/icons-material"，"antd", "@ant-design/icons"]
         }]
       ]
     }

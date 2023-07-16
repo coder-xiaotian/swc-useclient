@@ -20,7 +20,7 @@ pnpm i -D use-client
 ```
 
 ## 配置
-+ include：["@mui/material"]
++ include：["ui-library-path"]
 
 ## 案例
 next.js配置：
@@ -31,7 +31,7 @@ const nextConfig = {
       [
         'use-client',
         {
-          include: ["@mui/material"]
+          include: ["@mui/material", "@mui/icons-material"，"antd", "@ant-design/icons"]
         }
       ],
     ]
@@ -47,7 +47,7 @@ swc配置：
     "experimental": {
       "plugins": [
         ["use-client", {
-          "include": ["@mui/material"]
+          "include": ["@mui/material", "@mui/icons-material", "antd", "@ant-design/icons"]
         }]
       ]
     }
