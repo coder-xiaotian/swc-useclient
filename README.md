@@ -66,3 +66,31 @@ swc configuration:
   }
 }
 ```
+
+## FAQ
+
++ The swc plugin interrupts tree shaking
+
+At present, this is an expected behavior, [The Next.js team will improve it in the future](https://github.com/vercel/next.js/issues/52679#issuecomment-1636807256)。You can temporarily solve this problem by configuring modularizeImports:
+```javascript
+const nextConfig = {
+  modularizeImports: {
+    "@mui/material": {
+      transform: "@mui/material/{{member}}"
+    },
+  },
+  experimental: {
+    swcPlugins: [
+      [
+        "use-client",
+        {
+          include: ["@mui/material"],
+        },
+      ],
+    ],
+  },
+};
+```
+Note that some functions do not follow the '@ mui/material/{{member}}' rule, such as createTheme and ThemeProvider, which need to be processed separately as' import {createTheme, ThemeProvider} from '@ mui/material/styles'`
+
+🌟🌟🌟🌟 If this plugin is helpful to you, give the author a star.🙏🙏🙏🌟🌟🌟🌟
