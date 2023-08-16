@@ -6,7 +6,7 @@ use swc_core::{
         visit::VisitMut,
     },
 };
-
+use web_sys::console;
 #[derive(Debug, Default, Clone, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct Config {
@@ -20,6 +20,7 @@ pub struct TransformVisitor {
 
 impl VisitMut for TransformVisitor {
     fn visit_mut_module(&mut self, n: &mut Module) {
+        console::log_1(&"Hello using web-sys".into());
         for path in &self.include {
             if self.filepath.contains(path) {
                 let str = Str {

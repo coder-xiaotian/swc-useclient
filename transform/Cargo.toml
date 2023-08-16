@@ -7,6 +7,9 @@ name = "use_client"
 repository = ""
 version = "0.1.0"
 
+[profile.release]
+lto = false
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
@@ -20,6 +23,13 @@ swc_core = { version = "0.78.*", features = [
   "trace_macro",
 ] }
 tracing = "0.1.37"
+wasm-bindgen = "0.2.87"
+
+[dependencies.web-sys]
+version = "0.3.4"
+features = [
+  "console"
+]
 
 [dev-dependencies]
 serde_json = "1"
