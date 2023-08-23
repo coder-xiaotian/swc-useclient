@@ -2062,7 +2062,6 @@ dependencies = [
  "serde",
  "swc_core",
  "tracing",
- "wasm-bindgen",
  "web-sys",
 ]
 

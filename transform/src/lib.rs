@@ -6,22 +6,25 @@ use swc_core::{
         visit::VisitMut,
     },
 };
-use web_sys::console;
+use tracing::{info, instrument};
+
 #[derive(Debug, Default, Clone, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct Config {
     #[serde(default)]
     pub include: Vec<String>,
 }
+
 pub struct TransformVisitor {
     pub filepath: String,
     pub include: Vec<String>,
 }
 
 impl VisitMut for TransformVisitor {
+    #[instrument(skip_all)]
     fn visit_mut_module(&mut self, n: &mut Module) {
-        console::log_1(&"Hello using web-sys".into());
         for path in &self.include {
+            info!("path: {:?}", path);
             if self.filepath.contains(path) {
                 let str = Str {
                     span: Span {
