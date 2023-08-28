@@ -6,7 +6,6 @@ use swc_core::{
         visit::VisitMut,
     },
 };
-use tracing::{info, instrument};
 
 #[derive(Debug, Default, Clone, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -19,13 +18,11 @@ pub struct TransformVisitor {
     pub filepath: String,
     pub include: Vec<String>,
 }
-
 impl VisitMut for TransformVisitor {
-    #[instrument(skip_all)]
     fn visit_mut_module(&mut self, n: &mut Module) {
+        println!("path: {}", self.filepath);
         for path in &self.include {
-            info!("path: {:?}", path);
-            if self.filepath.contains(path) {
+            if self.filepath.contains(path) || self.filepath.contains("/button") {
                 let str = Str {
                     span: Span {
                         lo: BytePos(0),
