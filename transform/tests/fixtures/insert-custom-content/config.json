@@ -1,0 +1,3 @@
+{
+  "include": [{"path": "fixtures/insert-custom-content", "insert": "use strict"}]
+}

@@ -20,7 +20,16 @@ pnpm i -D use-client
 ```
 
 ## 配置
-+ include：["ui-library-path"]
+
+| 属性  | 类型  | 解释 |
+| ---- | ---- | ---- |
+| include | (string \| IncludeConfig)[] ｜ 要转换的路径数组 |
+
+IncludeConfig:
+| 属性 | 类型 | 解释 |
+| ---- | ---- | ---- | 
+| path | string ｜ 匹配路径 |
+| insert | string | 自定义插入文件首行的内容，默认值："use client" |
 
 ## 案例
 next.js配置：
@@ -51,6 +60,25 @@ swc配置：
         }]
       ]
     }
+  }
+}
+```
+
+自定义插入内容：
+```js
+const nextConfig = {
+  experimental: {
+    swcPlugins: [
+      [
+        'use-client',
+        {
+          include: ["path/to", {
+            path: "path/to",
+            insert: "use strict"
+          }]
+        }
+      ],
+    ]
   }
 }
 ```

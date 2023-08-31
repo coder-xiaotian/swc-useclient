@@ -7,7 +7,7 @@ use swc_core::{
     },
 };
 use testing::fixture;
-use use_client::{Config, TransformVisitor};
+use use_client::{UserConfig, TransformVisitor, normalize_config};
 
 fn syntax() -> Syntax {
     Syntax::Es(EsConfig {
@@ -21,7 +21,7 @@ fn use_client_fixture(input: PathBuf) {
     let dir = input.parent().unwrap();
     let output = dir.join("output.js");
     let config = read_to_string(dir.join("config.json")).expect("failed to read config.json");
-    let config: Config = serde_json::from_str(&config).unwrap();
+    let config: UserConfig = serde_json::from_str(&config).unwrap();
     let filepath: String = input.to_string_lossy().into();
 
     test_fixture(
@@ -29,7 +29,7 @@ fn use_client_fixture(input: PathBuf) {
         &|_tr| {
             as_folder(TransformVisitor {
                 filepath: filepath.replace("\\", "/"),
-                include: config.include.to_vec(),
+                include: normalize_config(&config),
             })
         },
         &input,

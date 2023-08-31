@@ -30,7 +30,15 @@ pnpm i -D use-client
 
 ## Configuration
 
-+ include：["ui-library-path"]
+| Property  | Type  | Description |
+| ---- | ---- | ---- |
+| include | (string \| IncludeConfig)[] ｜ Array of paths to be transformed |
+
+IncludeConfig:
+| Property | Type | Description |
+| ---- | ---- | ---- | 
+| path | string ｜ Path to match |
+| insert | string | Custom content to insert at the beginning of the file, default value: "use client" |
 
 ## Examples
 next.js configuration:
@@ -63,6 +71,25 @@ swc configuration:
         }]
       ]
     }
+  }
+}
+```
+
+Custom Insert Content:
+```js
+const nextConfig = {
+  experimental: {
+    swcPlugins: [
+      [
+        'use-client',
+        {
+          include: ["path/to", {
+            path: "path/to",
+            insert: "use strict"
+          }]
+        }
+      ],
+    ]
   }
 }
 ```
